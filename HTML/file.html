@@ -90,14 +90,16 @@
       overflow: hidden;
     }
     #art-container {
-      height: 58vh;
-      min-height: 340px;
-      background: #000;
-      border: 2px solid #7e57c2;
-      border-radius: 6px;
-      overflow: hidden;
-      margin-bottom: 18px;
-      box-shadow: 0 0 20px rgba(126, 87, 194, 0.35);
+    width: 60%;         
+    max-width: 600px;   
+    height: 45vh;   
+    min-height: 200px;
+    background: #000;
+    border: 2px solid #7e57c2;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: auto;        /* centers both horizontally and vertically */
+    box-shadow: 0 0 20px rgba(126, 87, 194, 0.35);
     }
     #scene-art {
       width: 100%;
@@ -184,6 +186,7 @@
     <div id="game-screen">
       <div id="art-container">
         <img id="scene-art" src="https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200" alt="Scene">
+        <img id="scene-art" src="images/paradisebg.jpg" alt="Eden's Gate">
       </div>
       <h1 id="location-title"></h1>
       <div id="story-text"></div>
@@ -193,7 +196,6 @@
 </div>
 
 <script>
-// Your original logic + minor fixes + art update
 let player = {
   morality: 0,
   dominance: 0,
@@ -204,7 +206,7 @@ let currentNode = "title";
 
 const nodes = {
   title: {
-    title: "",
+    title: "No Saints in Eden",
     art: "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200",
     text: "",
     choices: [
@@ -214,7 +216,7 @@ const nodes = {
   },
   eden_gate: {
     title: "The Gates of Eden",
-    art: "https://images.unsplash.com/photo-1557683316-973673bafdda?auto=format&fit=crop&q=80&w=1200",
+    art: "paradisebg.jpg",
     text: `Eden closes behind you with a sound like final judgment.
 They call it a city.
 They call it salvation.
@@ -236,9 +238,8 @@ Beyond the walls, the world remembers what humanity forgot.`,
   dead_road: {
     title: "The Dead Road",
     art: "https://images.unsplash.com/photo-1557682257-2f9c97a8a469?auto=format&fit=crop&q=80&w=1200",
-    text: `Cracked asphalt.
-Rusting cars.
-The remains of choices made too late.`,
+    text: `Rain's pissing down nonstop in this shithole called Eden.
+        Neon lights buzz like angry hornets, painting the gutters red and blue.`,
     choices: [
       {
         text: "[1] Scavenge the wrecks",

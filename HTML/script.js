@@ -60,6 +60,8 @@ The remains of choices made too late.
 
 };
 
+
+
 function render() {
   const node = nodes[currentNode];
 
