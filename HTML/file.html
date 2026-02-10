@@ -4,171 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>No Saints in Eden</title>
-  <link rel="stylesheet" hred="style.css">
+  <!--link to style.css for styling everything pretty-->
+  <link rel="stylesheet" href="style.css"> 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background: radial-gradient(circle at center, #1a0f1f 0%, #0a0a12 80%);
-      color: #e0d0ff;
-      font-family: 'Roboto Mono', monospace;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-    }
-    #app {
-      flex: 1;
-      display: flex;
-    }
-    /* SIDEBAR */
-    #left-menu {
-      width: 200px;
-      background: #0f0815;
-      border-right: 1px solid #3a1a5c;
-      padding: 20px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .logo {
-      margin-bottom: 24px;
-      text-align: center;
-    }
-    .logo .title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.45rem;
-      line-height: 1.05;
-      color: #d7b0ff;
-      text-shadow: 0 0 8px rgba(199, 130, 255, 0.6);
-    }
-    .logo span {
-      color: #ff79b0;
-      text-shadow: 0 0 10px #ff79b0;
-    }
-    .version {
-      font-size: 0.78rem;
-      color: #a0a0c0;
-      opacity: 0.7;
-      margin-top: 4px;
-    }
-    #left-menu button {
-      background: #1c1428;
-      border: 1px solid #5a3a7a;
-      color: #d0c0e8;
-      padding: 10px 0;
-      font-size: 0.9rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.15s;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-    }
-    #left-menu button:hover {
-      background: #3a1a5c;
-      border-color: #9d6fd0;
-      color: white;
-      box-shadow: 0 0 12px rgba(157, 111, 208, 0.4);
-    }
-    /* MAIN GAME AREA */
-    #game-frame {
-      flex: 1;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-    #game-screen {
-      flex: 1;
-      background: rgba(15, 10, 25, 0.85);
-      border: 1px solid #5a3a7a;
-      border-radius: 8px;
-      box-shadow: 0 0 30px rgba(90, 58, 122, 0.3);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    #art-container {
-    width: 60%;         
-    max-width: 600px;   
-    height: 45vh;   
-    min-height: 200px;
-    background: #000;
-    border: 2px solid #7e57c2;
-    border-radius: 6px;
-    overflow: hidden;
-    margin: auto;        /* centers both horizontally and vertically */
-    box-shadow: 0 0 20px rgba(126, 87, 194, 0.35);
-    }
-    #scene-art {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    #location-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      color: #e0b0ff;
-      text-shadow: 0 0 6px #b388ff;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-    #story-text {
-      flex: 1;
-      font-size: 1.12rem;
-      line-height: 1.75;
-      color: #e1d0f5;
-      overflow-y: auto;
-      padding-right: 12px;
-      scrollbar-width: thin;
-      scrollbar-color: #9d6fd0 #1c1428;
-    }
-    #story-text::-webkit-scrollbar {
-      width: 6px;
-    }
-    #story-text::-webkit-scrollbar-track {
-      background: #1c1428;
-    }
-    #story-text::-webkit-scrollbar-thumb {
-      background: #9d6fd0;
-      border-radius: 3px;
-    }
-    #choices {
-      margin-top: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-    .choice {
-      width: 75%;
-      max-width: 420px;
-      background: #5a3a7a;
-      border: 1px solid #9d6fd0;
-      color: white;
-      padding: 12px 18px;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: all 0.16s;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      font-size: 0.98rem;
-    }
-    .choice:hover {
-      background: #7e57c2;
-      border-color: #d0b0ff;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(157, 111, 208, 0.5);
-    }
-  </style>
+  
 </head>
 <body>
 <div id="app">
-  <!-- LEFT MENU -->
+  <!--leftside menu-->
   <aside id="left-menu">
     <div class="logo">
       <div class="title">NO SAINTS<br><span>IN EDEN</span></div>
@@ -181,128 +26,35 @@
     <button onclick="support()">⦿ SUPPORT</button>
   </aside>
 
-  <!-- CENTER GAME WINDOW -->
+  <!--game window in center -->
   <div id="game-frame">
     <div id="game-screen">
       <div id="art-container">
         <img id="scene-art" src="https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200" alt="Scene">
-        <img id="scene-art" src="images/paradisebg.jpg" alt="Eden's Gate">
       </div>
       <h1 id="location-title"></h1>
       <div id="story-text"></div>
       <div id="choices"></div>
     </div>
   </div>
+
+  <!-- RIGHT STATS COLUMN -->
+<aside id="right-stats">
+  <h2>STATS</h2>
+  <div id="morality">Morality: 0</div>
+  <div id="dominance">Dominance: 0</div>
+  <div id="strength">Strength: 0</div>
+  <div id="hack">Hack: 0</div>
+  <div id="charisma">Charisma: 0</div>
+</aside>
 </div>
 
-<script>
-let player = {
-  morality: 0,
-  dominance: 0,
-  supplies: 8
-};
 
-let currentNode = "title";
 
-const nodes = {
-  title: {
-    title: "No Saints in Eden",
-    art: "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200",
-    text: "",
-    choices: [
-      { text: "[1] New Game", next: "eden_gate" },
-      { text: "[2] Continue", next: "eden_gate" }
-    ]
-  },
-  eden_gate: {
-    title: "The Gates of Eden",
-    art: "paradisebg.jpg",
-    text: `Eden closes behind you with a sound like final judgment.
-They call it a city.
-They call it salvation.
-They never call it kind.
-Beyond the walls, the world remembers what humanity forgot.`,
-    choices: [
-      {
-        text: "[1] Walk forward without hesitation",
-        next: "dead_road",
-        effects: { dominance: 1 }
-      },
-      {
-        text: "[2] Take one last look at Eden",
-        next: "dead_road",
-        effects: { morality: 1 }
-      }
-    ]
-  },
-  dead_road: {
-    title: "The Dead Road",
-    art: "https://images.unsplash.com/photo-1557682257-2f9c97a8a469?auto=format&fit=crop&q=80&w=1200",
-    text: `Rain's pissing down nonstop in this shithole called Eden.
-        Neon lights buzz like angry hornets, painting the gutters red and blue.`,
-    choices: [
-      {
-        text: "[1] Scavenge the wrecks",
-        next: "dead_road",
-        effects: { supplies: 1 }
-      }
-    ]
-  }
-};
 
-function render() {
-  const node = nodes[currentNode] || nodes.title;
-  
-  // Update art
-  document.getElementById("scene-art").src = node.art || "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200";
-  
-  document.getElementById("location-title").innerText = node.title;
-  document.getElementById("story-text").innerText = node.text;
-  
-  const choicesDiv = document.getElementById("choices");
-  choicesDiv.innerHTML = "";
-  
-  node.choices.forEach(choice => {
-    const div = document.createElement("div");
-    div.className = "choice";
-    div.innerText = choice.text;
-    div.onclick = () => {
-      if (choice.effects) {
-        for (let k in choice.effects) {
-          player[k] += choice.effects[k];
-        }
-      }
-      currentNode = choice.next;
-      render();
-    };
-    choicesDiv.appendChild(div);
-  });
-}
+<!-- Call the script file for game logic-->
+<script src="script.js"></script>
 
-function saveGame() {
-  localStorage.setItem("eden_save", JSON.stringify({ player, currentNode }));
-  alert("Game saved!");
-}
 
-function loadGame() {
-  const data = localStorage.getItem("eden_save");
-  if (!data) {
-    alert("No save found.");
-    return;
-  }
-  const parsed = JSON.parse(data);
-  player = parsed.player;
-  currentNode = parsed.currentNode;
-  render();
-  alert("Game loaded!");
-}
-
-function support() {
-  alert("Support link coming soon!");
-}
-
-// Start
-render();
-</script src="script.js"> </script>>
 </body>
 </html>
