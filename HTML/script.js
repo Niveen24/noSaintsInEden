@@ -56,7 +56,7 @@ const nodes =
   your_apt_intro:
   {
     title: "Aether District - Your Apartment",
-    art: "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200",
+    art: "images/apt.png",
     text: `
     The smell hits you first. Rotting garbage mixed with chemical runoff from the factories upwind. 
 
@@ -96,7 +96,7 @@ const nodes =
   nap1:
   {
     title: "Aether District - Your Apartment",
-    art: "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200",
+    art: "images/apt.png",
     text: `
     You try to sleep, but the datapad keeps buzzing. Rent reminders. It's like the city knows you're trying to ignore your problems.
     Finally, around 3 AM, there's a new message that gets you out of bed.
@@ -110,15 +110,18 @@ const nodes =
     Sleep was a waste of time anyway.
     `,
     choices:
+    [
     {
       text: "Head to The Rusty Anchor",
       next: "markus_meeting1"
     }
+    ]
   },
 
   markus_meeting1:
   {
     title: "The Rusty Anchor",
+    art: "images/bar.png", 
     text: `
     Marcus is waiting for you in the back booth of a bar called The Rusty Anchor, his augmented eye glowing faintly in the darkness. He's gotten heavier since you last saw him, the kind of bulk that comes from corp-grade muscle enhancements. 
     The Velvet Collective pays well, apparently.
@@ -128,21 +131,83 @@ const nodes =
 
     You slide into the booth. "What kind of shit?"
 
-    "The kind that involves stolen neural-tech from Helix Industries. The kind that has bounty hunters sweeping the lower districts. They're saying he's got classified research data in his head." 
-    Marcus finally looks at you, and there's something like pity in his eyes. 
-    "They're offering fifty thousand credits for him. Alive. Double that for just his head."
+    "The kind that involves stolen neural-tech from Helix Industries. The kind that has bounty hunters sweeping the lower districts. They're saying he's got classified research data in his head." Marcus finally looks at you, and there's something like pity in his eyes.  "They're offering fifty thousand credits for him. Alive. Double that for just his head."
 
     Your stomach tightens. Fifty thousand. That kind of money could get you out of the Aether District. Hell, maybe even out of Eden entirely.
     `,
     choices:
     [
       {
-        text: "[1] Scavenge the wrecks",
-        next: "dead_road",
-        effects: { supplies: 1 }
+        text: "[1] I need to help him!",
+        effect: { morality: 1},
+        next: "markus_meeting2"
+      },
+            {
+        text: "[2] Fifty thousand...",
+        next: "markus_meeting2",
+        effects: { dominance: 1},
+      },
+            {
+        text: "[3] What's on the neural-tech?",
+        next: "markus_meeting2",
+        effects: { morality: -1, dominance: 1}
       }
     ]
-  }
+  },
+
+  markus_meeting2:
+  {
+    title: "The Rusty Anchor",
+    art: "images/bar.png", 
+    text: `
+      continue here
+
+      the options were:
+
+      Where is he? I need to find him before they do.
+      Fifty thousand... that's a lot of money, Marcus. What are you really asking me?
+      What's on the neural-tech? Why does Helix want it so badly?
+
+
+    `
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 };
 
