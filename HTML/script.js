@@ -15,7 +15,8 @@ let player =
   traits: [],
   morality: 5, // -10 bad to +10 good 
   dominance: 5, // -10 sub to +10 dom
-  sanity: 10, //0 insane to 10 sane, sanity tests can occur during certain choices and have effects (ex. you choose option 1, low sanity can change choice to option 2, break 4th wall)
+  sanity: 10, 
+  creds: 200,//0 insane to 10 sane, sanity tests can occur during certain choices and have effects (ex. you choose option 1, low sanity can change choice to option 2, break 4th wall)
   perks: [],
   inventory: [],
   quests:   //quests can be added as player progresses story
@@ -37,22 +38,22 @@ const nodes =
     title: "No Saints in Eden",
     art: "images/paradisebg.jpg",
     text: `
-      They call it a city.
-      They call it salvation.
-      They call it Eden.
-      
-      But saints don't survive here, and sinners don't get to repent.
-      Everyone's drowning in the same shit.
-      The only question is who you pull under to stay afloat.
+    They call it a city.
+    They call it salvation.
+    They call it Eden.
+    
+    But saints don't survive here, and sinners don't get to repent.
+    Everyone's drowning in the same shit.
+    The only question is who you pull under to stay afloat.
     `,
     choices:
     [
-      { text: "[1] New Game", next: "your_apt" },
-      { text: "[2] Continue", next: "your_apt" }
+      { text: "[1] New Game", next: "your_apt_intro" },
+      { text: "[2] Continue", next: "your_apt_intro" }
     ]
   },
 
-  your_apt:
+  your_apt_intro:
   {
     title: "Aether District - Your Apartment",
     art: "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200",
@@ -85,14 +86,41 @@ const nodes =
         text: "But first, check on your brother",
         next: "markus_meeting1"
       },
+      {
+        text: "Ignore everything and take a nap",
+        next: "nap1"
+      }
     ]
+  },
+
+  nap1:
+  {
+    title: "Aether District - Your Apartment",
+    art: "https://images.unsplash.com/photo-1556015174-ac6f87f53456?auto=format&fit=crop&q=80&w=1200",
+    text: `
+    You try to sleep, but the datapad keeps buzzing. Rent reminders. It's like the city knows you're trying to ignore your problems.
+    Finally, around 3 AM, there's a new message that gets you out of bed.
+
+    "Your brother doesn't have much time. Meet me at The Rusty Anchor. Come alone. - M"
+    Marcus. Always cryptic when it matters.
+
+    You drag yourself out of bed. The Aether District looks worse at night—the neon signs casting everything in sickly colors, the streets slick with something that might be rain but probably isn't.
+
+    Let's be real, it's not like you have anything better to do.
+    Sleep was a waste of time anyway.
+    `,
+    choices:
+    {
+      text: "Head to The Rusty Anchor",
+      next: "markus_meeting1"
+    }
   },
 
   markus_meeting1:
   {
-    title: "The Dead Road",
+    title: "The Rusty Anchor",
     text: `
-    Marcus is waiting in the back booth, his augmented eye glowing faintly in the darkness. He's gotten heavier since you last saw him, the kind of bulk that comes from corp-grade muscle enhancements. 
+    Marcus is waiting for you in the back booth of a bar called The Rusty Anchor, his augmented eye glowing faintly in the darkness. He's gotten heavier since you last saw him, the kind of bulk that comes from corp-grade muscle enhancements. 
     The Velvet Collective pays well, apparently.
 
     "Took you long enough," he says, not looking up from his drink. "Your brother got himself into some deep shit. Deeper than usual."
@@ -104,7 +132,7 @@ const nodes =
     Marcus finally looks at you, and there's something like pity in his eyes. 
     "They're offering fifty thousand credits for him. Alive. Double that for just his head."
 
-    Your stomach tightens. Fifty thousand. That kind of money could get you out of the Rust District. Hell, maybe even out of Eden entirely.
+    Your stomach tightens. Fifty thousand. That kind of money could get you out of the Aether District. Hell, maybe even out of Eden entirely.
     `,
     choices:
     [
