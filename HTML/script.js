@@ -139,18 +139,18 @@ const nodes =
     [
       {
         text: "[1] I need to help him!",
-        effect: { morality: 1},
+        effects: { morality: 1},
         next: "markus_meeting2"
       },
             {
-        text: "[2] Fifty thousand...",
+        text: "[2] Fifty thousand, you say...?",
         next: "markus_meeting2",
-        effects: { dominance: 1},
+        effects: { dominance: 1, morality: -1},
       },
             {
         text: "[3] What's on the neural-tech?",
         next: "markus_meeting2",
-        effects: { morality: -1, dominance: 1}
+        effects: { dominance: 1}
       }
     ]
   },
@@ -249,42 +249,63 @@ function render() {
   const node = nodes[currentNode];
 
   document.getElementById("location-title").innerText = node.title;
-  document.getElementById("story-text").innerText = node.text;
-  document.getElementById("scene-art").src = node.art;
+  document.getElementById("story-text").innerText = node.text || "";
+  document.getElementById("scene-art").src = node.art || "";
 
-   // Scroll story back to top
   document.getElementById("story-text").scrollTop = 0;
 
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
 
-  node.choices.forEach(choice => {
-    const div = document.createElement("div");
-    div.className = "choice";
-    div.innerText = choice.text;
+  if (node.choices && node.choices.length > 0) {
+    node.choices.forEach(choice => {
+      const div = document.createElement("div");
+      div.className = "choice";
+      div.innerText = choice.text;
 
-    div.onclick = () => {
-      if (choice.effects) {
-        for (let k in choice.effects) {
-          player[k] += choice.effects[k];
-        }
-      }
-      currentNode = choice.next;
-      render();
-    };
+      div.onclick = () => {
+        applyEffects(choice.effects);
+        currentNode = choice.next;
+        render();
+      };
 
-    choicesDiv.appendChild(div);
+      choicesDiv.appendChild(div);
+    });
+  }
 
-    // update right-hand stats
-    document.getElementById("morality").innerText = "Morality: " + player.morality;
-    document.getElementById("dominance").innerText = "Dominance: " + player.dominance;
-    document.getElementById("strength").innerText = "Strength: " + player.attributes.strength;
-    document.getElementById("hack").innerText = "Hack: " + player.attributes.hack;
-    document.getElementById("charisma").innerText = "Charisma: " + player.attributes.charisma;
-
-
-  });
+  updateStatsUI();
 }
+
+//applies the changes to player stats from choices
+function applyEffects(effects) {
+  if (!effects) return;
+
+  for (let stat in effects) {
+    const amount = effects[stat];
+
+    if (stat in player.attributes) {
+      player.attributes[stat] += amount;
+    }
+    else if (stat in player) {
+      player[stat] += amount;
+    }
+    else {
+      console.warn("Unknown stat:", stat);
+    }
+  }
+}
+
+//updates the stats that are shown on right sidebar
+function updateStatsUI() {
+  document.getElementById("morality").innerText = "Morality: " + player.morality;
+  document.getElementById("dominance").innerText = "Dominance: " + player.dominance;
+  document.getElementById("strength").innerText = "Strength: " + player.attributes.strength;
+  document.getElementById("hack").innerText = "Hack: " + player.attributes.hack;
+  document.getElementById("charisma").innerText = "Charisma: " + player.attributes.charisma;
+  document.getElementById("sanity").innerText = "Sanity: " + player.sanity;
+  document.getElementById("creds").innerText = "Creds: " + player.creds;
+}
+
 
 //save and load functions
 //TODO: add support for multiple save slots, save file name, and import/export saves so players can save progress outside of localStorage
