@@ -44,12 +44,12 @@ const nodes =
     
     But saints don't survive here, and sinners don't get to repent.
     Everyone's drowning in the same shit.
-    The only question is who you pull under to stay afloat.
+    The only question is, who will you pull under to stay afloat?
     `,
     choices:
     [
-      { text: "[1] New Game", next: "your_apt_intro" },
-      { text: "[2] Continue", next: "your_apt_intro" }
+      { text: "[1] New Game", action: startCharacterCreation },
+      { text: "[2] Continue", action: continueGame }
     ]
   },
 
@@ -199,7 +199,7 @@ const nodes =
 
 
 
-
+//additional nodes go here, but I'm busy with life so this is just a placeholder for now :) woo future me!
 
 
 
@@ -219,6 +219,28 @@ const nodes =
 
 
 
+function setCreationScreen(title, description)
+{
+  const storyDiv = document.getElementById("story-text");
+  const choicesDiv = document.getElementById("choices");
+
+  document.getElementById("location-title").innerText = "Character Creation";
+  document.getElementById("scene-art").src = "images/paradisebg.jpg";
+
+  storyDiv.innerHTML = `
+    <div class="creation-panel">
+      <div class="creation-title">${title}</div>
+      <div class="creation-desc">${description}</div>
+      <div id="creation-options"></div>
+      <div id="creation-preview" class="stat-preview"></div>
+    </div>
+  `;
+
+  choicesDiv.innerHTML = "";
+}
+
+
+//additional functions for game mechanics, like inventory management, quests, etc. go here
 
 
 
@@ -237,15 +259,298 @@ const nodes =
 
 
 
+function startCharacterCreation() //PART 1 of CC
+{
+    const storyDiv = document.getElementById("story-text");
+    const choicesDiv = document.getElementById("choices");
+
+    document.getElementById("location-title").innerText = "Character Creation";
+    document.getElementById("scene-art").src = "images/paradisebg.jpg";
+
+    storyDiv.innerHTML = `
+    In a city like Eden, you learn things about yourself.
+    Things you'd rather not know. <br><br>
+    What you're good at. What you're willing to do. Where your breaking point is.<br><br>
+    Better to know now than find out when it's too late. <br><br>
+    Your choices will define who you are: dominant or submissive, honorable or corrupt.<br><br>
+    Who are you in this city of saints and sinners?
+    `;
+
+    choicesDiv.innerHTML = "";
+
+    const btn = document.createElement("div");
+    btn.className = "choice";
+    btn.innerText = "Begin Creation";
+    btn.onclick = nameEntry;
+
+    choicesDiv.appendChild(btn);
+}
+
+function nameEntry()  //PART 2 of CC
+{
+  setCreationScreen
+  (
+    "Who are you?",
+    "Not that it matters much down here. <br>But we've gotta call you something." 
+ );
+
+  const options = document.getElementById("creation-options");
+
+  options.innerHTML = `
+    <input id="nameInput" type="text" placeholder="Raven" style="
+      width:100%;
+      padding:10px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:#0c0f14;
+      color:white;
+      margin-top:6px;
+    ">
+    <div class="creation-option" id="confirmName">Continue</div>
+  `;
+
+  document.getElementById("confirmName").onclick = () =>
+  {
+    player.name = document.getElementById("nameInput").value || "Raven";
+    backgroundSelection();
+  };
+}
+
+function backgroundSelection() //PART 3 of CC
+{
+  setCreationScreen
+  (
+    "Background",
+    "In places like these, you're either useful or you're dead. So what makes you useful?"
+  );
+
+  const options = document.getElementById("creation-options");
+  const preview = document.getElementById("creation-preview");
+
+  const backgrounds =
+  [
+    {
+      name: "Pit Fighter",
+      desc: "+Strength, -Hack",
+      apply: () => {
+        player.attributes.strength += 3;
+        player.attributes.hack -= 1;
+      }
+    },
+    {
+      name: "Wirehead",
+      desc: "-Strength, +Hack, -Charisma",
+      apply: () => {
+        player.attributes.strength -= 1;
+        player.attributes.hack += 2;
+        player.attributes.charisma -= 1;
+      }
+    },
+    {
+      name: "Silver Tongue",
+      desc: "-Strength, -Hack, +Charisma",
+      apply: () => {
+        player.attributes.strength -= 1;
+        player.attributes.hack -= 1;
+        player.attributes.charisma += 2;
+      }
+    },
+    {
+      name: "Corpo Dropout",
+      desc: "+Hack, +Charisma",
+      apply: () => {
+        player.attributes.hack += 1;
+        player.attributes.charisma += 1;
+      }
+    },
+    {
+      name: "Ghost",
+      desc: "-Sanity, +Hack",
+      apply: () =>
+      {
+        player.sanity -= 1;
+        player.attributes.hack += 2;
+      }
+    },
+    {
+      name: "Jack of Shit",
+      desc: "+1 to all attributes",
+      apply: () => {
+        player.attributes.strength += 1;
+        player.attributes.hack += 1;
+        player.attributes.charisma += 1;
+      }
+    }
+  ];
+
+  backgrounds.forEach(bg =>
+  {
+    const card = document.createElement("div");
+    card.className = "creation-option";
+    card.innerHTML = `
+      <div class="option-name">${bg.name}</div>
+      <div class="option-desc">${bg.desc}</div>
+    `;
+
+    card.onclick = () =>
+    {
+      bg.apply();
+      finishCharacterCreation();
+    };
+
+    options.appendChild(card);
+  });
+
+}
+
+function flashStatPreview()
+{
+  const el = document.getElementById("creation-preview");
+  if (!el) return;
+  el.style.opacity = 0.3;
+  setTimeout(() => el.style.opacity = 1, 120);
+}
+
+function finishCharacterCreation()
+{
+    currentNode = "your_apt_intro";
+    render();
+}
+
+//save and load system with multiple slots, export/import, and save file names
+const saveSlots = ["slot1", "slot2", "slot3"];
+let selectedSlot = null;
+let popupMode = "save";
+
+function openPopup(mode)
+{
+    popupMode = mode;
+    document.getElementById("popupTitle").innerText = mode === "save" ? "Save Game" : "Load Game";
+    document.getElementById("slotName").style.display = mode === "save" ? "block" : "none";
+    populateSlots();
+    document.getElementById("saveLoadPopup").style.display = "flex";
+}
+
+function closePopup()
+{
+    document.getElementById("saveLoadPopup").style.display = "none";
+    selectedSlot = null;
+}
+
+function populateSlots() {
+    const container = document.getElementById("slotsContainer");
+    container.innerHTML = "";
+    saveSlots.forEach(slot =>
+      {
+        const data = localStorage.getItem(slot);
+        const name = data ? JSON.parse(data).name : "(empty)";
+        const btn = document.createElement("button");
+        btn.innerText = name;
+        btn.onclick = () =>
+          {
+            selectedSlot = slot;
+            if (popupMode === "load")
+              {
+                if (!data) return alert("Empty slot!");
+                const saveData = JSON.parse(data);
+                player = saveData.player;
+                currentNode = saveData.currentNode;
+                render();
+                closePopup();
+            } else {
+                document.getElementById("slotName").value = data ? JSON.parse(data).name : "";
+            }
+        };
+        container.appendChild(btn);
+    });
+}
+
+document.getElementById("confirmSaveLoad").onclick = () =>
+  {
+    if (popupMode !== "save") return;
+    if (!selectedSlot) selectedSlot = saveSlots[0];
+    const name = document.getElementById("slotName").value || "Unnamed";
+    const data = { player, currentNode, name };
+    localStorage.setItem(selectedSlot, JSON.stringify(data));
+    alert(`Saved to ${selectedSlot} as "${name}"`);
+    closePopup();
+};
+
+document.getElementById("closePopup").onclick = closePopup;
+//export function 
+document.getElementById("exportSlot").onclick = () =>
+  {
+    if (!selectedSlot) return alert("Select a slot first");
+    const data = localStorage.getItem(selectedSlot);
+    if (!data) return alert("Slot empty");
+    const blob = new Blob([data], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${selectedSlot}.json`;
+    a.click();
+};
+//import function
+document.getElementById("importSlotBtn").onclick = () => document.getElementById("importSlot").click();
+document.getElementById("importSlot").onchange = (e) =>
+  {
+    if (!selectedSlot) selectedSlot = saveSlots[0];
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (ev) =>
+      {
+        const data = JSON.parse(ev.target.result);
+        localStorage.setItem(selectedSlot, JSON.stringify(data));
+        alert("Save imported!");
+        populateSlots();
+    };
+    reader.readAsText(file);
+};
+
+document.querySelector("button[onclick='saveGame()']").onclick = () => openPopup("save");
+document.querySelector("button[onclick='loadGame()']").onclick = () => openPopup("load");
 
 
+//disables continue button if no saves are present in local storage
+function checkContinueButton()
+{
+    const choicesDiv = document.getElementById("choices");
+    if (!choicesDiv) return;
 
+    //find the continue button
+    const continueBtn = Array.from(choicesDiv.children)
+        .find(c => c.innerText.toLowerCase().includes("continue"));
 
+    if (!continueBtn) return;
 
+    //check if any save slot has data
+    const anySave = saveSlots.some(slot => localStorage.getItem(slot));
 
+    //grey button out if therers no saves
+    continueBtn.style.pointerEvents = anySave ? "auto" : "none";
+    continueBtn.style.opacity = anySave ? 1 : 0.5;
+}
+
+function continueGame() {
+    //Fidn the most recent save slot with data
+    let data = null;
+    for (let i = saveSlots.length - 1; i >= 0; i--)
+    {
+        const slotData = localStorage.getItem(saveSlots[i]);
+        if (slotData)
+        {
+            data = JSON.parse(slotData);
+            break;
+        }
+    }
+    if (!data) return alert("No save data found!"); //shouldn't happen since continue button is disabled, but just in case
+    player = data.player;
+    currentNode = data.currentNode;
+    render();
+}
 
 //rendering function; loads up current node and updates page with new text and choices, and applies effects from prev choice
-function render() {
+function render()
+{
   const node = nodes[currentNode];
 
   document.getElementById("location-title").innerText = node.title;
@@ -257,46 +562,67 @@ function render() {
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
 
-  if (node.choices && node.choices.length > 0) {
-    node.choices.forEach(choice => {
-      const div = document.createElement("div");
-      div.className = "choice";
-      div.innerText = choice.text;
+  if (node.choices && node.choices.length > 0)
+    {
+      node.choices.forEach(choice => 
+      {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.innerText = choice.text;
 
-      div.onclick = () => {
-        applyEffects(choice.effects);
-        currentNode = choice.next;
-        render();
-      };
+        div.onclick = () =>
+        {
+          if (choice.action)
+          {
+            choice.action(); //if choice has a custom action function, call it instead of default behavior
+          } 
+          else
+          {
+            applyEffects(choice.effects);
+            currentNode = choice.next;
+            render();
+          }
+        };
 
-      choicesDiv.appendChild(div);
-    });
-  }
+        choicesDiv.appendChild(div);
+      });
+    }
 
   updateStatsUI();
+
+  if (currentNode === "title")
+  {
+    checkContinueButton();
+  }
 }
 
 //applies the changes to player stats from choices
-function applyEffects(effects) {
+function applyEffects(effects)
+{
   if (!effects) return;
 
-  for (let stat in effects) {
+  for (let stat in effects)
+    {
     const amount = effects[stat];
 
-    if (stat in player.attributes) {
+    if (stat in player.attributes)
+    {
       player.attributes[stat] += amount;
     }
-    else if (stat in player) {
+    else if (stat in player)
+    {
       player[stat] += amount;
     }
-    else {
-      console.warn("Unknown stat:", stat);
+    else
+    {
+      console.warn("Unknown stat:", stat); //just in case I accidentally try to apply an effect to a stat that doesn't exist :)
     }
   }
 }
 
 //updates the stats that are shown on right sidebar
-function updateStatsUI() {
+function updateStatsUI()
+{
   document.getElementById("morality").innerText = "Morality: " + player.morality;
   document.getElementById("dominance").innerText = "Dominance: " + player.dominance;
   document.getElementById("strength").innerText = "Strength: " + player.attributes.strength;
@@ -307,23 +633,8 @@ function updateStatsUI() {
 }
 
 
-//save and load functions
-//TODO: add support for multiple save slots, save file name, and import/export saves so players can save progress outside of localStorage
-function saveGame() {
-  localStorage.setItem("eden_save", JSON.stringify({ player, currentNode }));
-}
-
-function loadGame() {
-  const data = JSON.parse(localStorage.getItem("eden_save"));
-  if (!data) return;
-  player = data.player;
-  currentNode = data.currentNode;
-  render();
-}
-
-
-
 //TODO: add function for support() button
+
 
 
 

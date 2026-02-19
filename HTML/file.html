@@ -69,6 +69,24 @@
 
 
 
+<!-- Save/Load Popup -->
+<div id="saveLoadPopup" style="display:none;">
+  <div id="popupContent">
+    <h3 id="popupTitle">Save Game</h3>
+    <div id="slotsContainer"></div>
+    <input type="text" id="slotName" placeholder="Enter save name">
+    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap: wrap;">
+      <button id="confirmSaveLoad">Confirm</button>
+      <button id="closePopup">Cancel</button>
+      <button id="exportSlot">Export</button>
+      <input type="file" id="importSlot" style="display:none;">
+      <button id="importSlotBtn">Import</button>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 <!-- Call the script file for game logic-->
