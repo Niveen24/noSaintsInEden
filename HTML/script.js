@@ -248,6 +248,14 @@ const nodes =
 
 };
 
+//additional functions for game mechanics, like inventory management, quests, etc. go here
+
+
+
+
+
+
+
 
 
 
@@ -276,25 +284,26 @@ function setCreationScreen(title, description)
   choicesDiv.innerHTML = "";
 }
 
+function transitionRender(callback)
+{
+  const screen = document.getElementById("game-screen");
 
-//additional functions for game mechanics, like inventory management, quests, etc. go here
+  screen.classList.add("screen-fade-out");
 
+  setTimeout(() =>
+  {
+    callback(); // run your normal render or action
 
+    screen.classList.remove("screen-fade-out");
+    screen.classList.add("screen-fade-in");
 
+    setTimeout(() =>
+    {
+      screen.classList.remove("screen-fade-in");
+    }, 250);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }, 200);
+}
 
 function startCharacterCreation() //PART 1 of CC
 {
@@ -328,23 +337,14 @@ function nameEntry()  //PART 2 of CC
   setCreationScreen
   (
     "Who are you?",
-    "Not that it matters much down here. <br>But we've gotta call you something." 
+    "..."
  );
 
   const options = document.getElementById("creation-options");
 
   options.innerHTML = `
-    <input id="nameInput" type="text" placeholder="Raven" style="
-      width:100%;
-      padding:10px;
-      border-radius:6px;
-      border:1px solid rgba(255,255,255,0.15);
-      background:#0c0f14;
-      color:white;
-      margin-top:6px;
-    ">
-    <div class="creation-option" id="confirmName">Continue</div>
-  `;
+    <input id="nameInput" type="text" placeholder="Raven">
+    <div class="creation-option" id="confirmName">Continue</div>  `;
 
   document.getElementById("confirmName").onclick = () =>
   {
@@ -358,7 +358,7 @@ function backgroundSelection() //PART 3 of CC
   setCreationScreen
   (
     "Background",
-    "In places like these, you're either useful or you're dead. So what makes you useful?"
+    "Choose your attributes"
   );
 
   const options = document.getElementById("creation-options");
@@ -432,7 +432,7 @@ function backgroundSelection() //PART 3 of CC
     card.onclick = () =>
     {
       bg.apply();
-      finishCharacterCreation();
+      transitionRender(finishCharacterCreation);
     };
 
     options.appendChild(card);
@@ -609,18 +609,20 @@ function render()
 
         div.onclick = () =>
         {
-          if (choice.action)
+          transitionRender(() =>
           {
-            choice.action(); //if choice has a custom action function, call it instead of default behavior
-          } 
-          else
-          {
-            applyEffects(choice.effects);
-            currentNode = choice.next;
-            render();
-          }
+            if (choice.action)  //if choice has custom action, call its function
+            {
+              choice.action();
+            }
+            else
+            {
+              applyEffects(choice.effects);
+              currentNode = choice.next;
+              render();
+            }
+          });
         };
-
         choicesDiv.appendChild(div);
       });
     }

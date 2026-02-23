@@ -348,3 +348,83 @@
   color: #b8c0ff;
 }
 
+.creation-title {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  color: #e6c6ff;
+  text-shadow: 0 0 6px rgba(179,136,255,0.45);
+}
+
+.creation-desc {
+  color: #cbb6ff;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+#nameInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(157,111,208,0.35);
+  background: rgba(20, 14, 35, 0.6);
+  color: #e0d0ff;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+#nameInput::placeholder {
+  color: #9d8cc8;
+  opacity: 0.7;
+}
+
+#nameInput:focus {
+  border-color: #b388ff;
+  box-shadow: 0 0 10px rgba(179,136,255,0.35);
+  background: rgba(20, 14, 35, 0.85);
+}
+
+#confirmName {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 5px;
+  border: 1px solid #9d6fd0;
+  background: rgba(90,58,122,0.7);
+  color: #f0e6ff;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+#confirmName:hover {
+  background: #7e57c2;
+  border-color: #d0b0ff;
+  box-shadow: 0 0 12px rgba(157,111,208,0.35);
+  transform: translateY(-1px);
+}
+
+#confirmName:active {
+  transform: translateY(0);
+  box-shadow: 0 0 6px rgba(157,111,208,0.25);
+}
+
+/* Transition Stuff */
+#game-screen {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.screen-fade-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.screen-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
