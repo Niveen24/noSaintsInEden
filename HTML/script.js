@@ -188,7 +188,7 @@ const nodes =
       },
             {
         text: "[3] What's on the neural-tech?",
-        next: "markus_meeting_end",
+        next: "markus_meeting1_op3",
         effects: { dominance: 1}
       }
     ]
