@@ -271,7 +271,14 @@ const nodes =
 
     Marcus's voice is flat. Professional. "Just thought I should warn you.” He stands, drops credits on the table, and goes to leave. He turns for just a second, "For what it's worth? I hope you find him." Then he's gone.
     
-    `
+    `,
+    choices:
+    [
+      {
+        text: "Continue",
+        next: "markus_meeting1_end"
+      }
+    ]
   },
 
 
@@ -372,7 +379,14 @@ const nodes =
     What you do with it says more about you than it does about Eden.
 
     Fuck Marcus and his fortune cookie wisdom.
-      `
+      `,
+    choices:
+    [
+      {
+        text: "Continue",
+        next: "markus_meeting1_end"
+      }
+    ]
   },
 
   markus_meeting1_op3:
@@ -430,9 +444,274 @@ const nodes =
     About the fight three months ago where you called him naive and idealistic and stupid for thinking he could change anything.
 
     And about the fact that maybe he actually found something worth changing.
-    `
+    `,
+    choices:
+    [
+      {
+        text: "Continue",
+        next: "markus_meeting1_end"
+      }
+    ]
   },
 
+    markus_meeting1_end:
+  {
+    title: "The Rusty Anchor",
+    art: "images/bar.png",
+    text: `
+The air outside tastes like copper and burnt plastic. You stand there for a moment, watching Marcus disappear into the crowd. 
+
+Someone bumps into you, doesn't apologize, and just keeps walking. That's Eden. Everyone's in a hurry to get nowhere. 
+
+Sector 9. You pull up your datapad and stare at the map. The entire sector is just... grey. No street names. No landmarks. The map software gave up trying to catalog it years ago. Just a blob labeled "Sector 9" with a helpful little warning icon that says "Travel Advisory: Extreme." Yeah. Thanks for that. 
+
+Your brother could be somewhere in there. Somewhere in forty square blocks of collapsed infrastructure and people who'd gut you for a half-eaten protein bar. You pocket the datapad. 
+
+Think. Where would he go? If you were running from corpo security and bounty hunters with military-grade tech, where would you hide?
+
+Your brother's not exactly a criminal mastermind. This is the same guy who tried to organize a rent strike in your building and somehow got three people evicted, including himself. His plan for "collective action" lasted about twelve hours before the landlord just changed the locks. But he's not stupid. 
+Usually. 
+Okay, sometimes he's stupid.
+
+The point is, if he's running scared, he's not going to the quiet parts. Those get searched first. It’s too easy to corner someone when there's no one around to witness it. 
+
+No, you'd go where it's loud. Where it's chaotic. Where there's enough violence and movement that one more person running doesn't stand out. Where corpo security has to actually worry about getting shot. 
+
+You're about to start walking when you notice a crowd forming half a block down. Not the usual type. It’s not uncommon for street preachers, drug dealers, or performers to draw crowds in the Aether District. But this one's different. People are quiet, watching a screen. You drift closer. It's a public newsfeed terminal. The corps installed them years ago, before they realized they didn't need propaganda to control people in the Aether District. Turns out, keeping everyone broke and desperate works just fine on its own. 
+
+Most of the terminals had already been broken or tagged with graffiti, but this one was actually working. On the screen was a reporter. He definitely was not from around here, evident from his clean suit and clean face. 
+
+"—additional security measures in Sector 9 following reports of escalating violence between local factions. The eastern quadrant has seen particularly intense clashes over the past twelve hours, with authorities advising all non-residents to avoid the area—"
+
+Eastern quadrant. Twelve hours of violence.
+
+Someone in the crowd mutters, "Vultures are moving in on Southside territory. Gonna be a bloodbath."
+
+Another voice: "Already is a bloodbath. My cousin lives out there. Said there's corpo mercs everywhere pretending to be neutral."
+
+"Corpo don't go into Sector 9."
+
+"Sure they do; corpo goes where corpo wants.”
+
+Someone else laughs, bitter: "Yeah, and bodies are cheap. Whole lot cheaper than whatever they're looking for."
+
+The crowd starts dispersing. The feed switches to some story about water rationing in the upper districts. Nobody here cares about that. But you're still thinking about what you just heard about the Eastern quadrant. It’s a search operation, that much you’re sure of. It seems like others in the city are aware of it, too. They're stirring shit up, forcing people to move, to scatter. Making it easier to spot someone who doesn't belong. 
+
+But here's the thing: if your brother's smart enough–and he is, mostly– he'd know that too. So maybe he's not in the chaos. Maybe he's near it. Close enough to blend in with the noise, far enough to avoid the actual fighting. Or maybe he's exactly where the violence is, because that's the last place they'd expect someone to hide. You have no clue. 
+
+You look back at the terminal, but it's moved on to some corporate spokesperson talking about "community investment initiatives."
+
+Eastern quadrant. That’s something.
+
+You could go home. Grab the shock-prod you're not supposed to have. That half-broken scanner you lifted from a corpo trash heap. Maybe even eat something that isn't three days expired. But your legs are already moving east. Guess that answers that.
+
+
+    `,
+    choices:
+    [
+      {
+        text: "Continue",
+        next: "sector9_1"
+      }
+    ]
+  },
+
+
+  sector9_1:
+  {
+    title: "Fletcher Station",
+    art: "images/train_station.jpg",
+    text: `
+The transit station is two blocks over. You head for it on autopilot, swiping your datapad at the turnstile. It beeps angry red. Insufficient funds for Zone 4 travel.
+
+Right. Because of course.
+
+You jump the turnstile. Nobody stops you. The attendant doesn't even look up.
+
+The platform's nearly empty. A few people waiting, all of them looking like they'd rather be anywhere else. The route map on the wall shows the line in faded colors—stops marked in clean white dots until you hit Sector 9. Then nothing. Just a blank space where the rest of the line should be.
+
+Trains used to go all the way through. Then drivers started refusing the route. Too dangerous. Too many incidents. The transit authority tried rotating drivers, offering hazard pay, threatening terminations. 
+
+Didn't matter. Can't make someone drive into Sector 9 if they're too scared to show up for their shift.
+
+Now the trains stop at the border. Last stop: Fletcher Station. After that, you're on your own.
+
+The next train slides in with a mechanical groan. You get on. It's mostly empty—couple of people who look like they've had a long shift, one guy passed out in the corner, smells like he pissed himself.
+
+You grab a seat near the door and watch the city blur past the scratched windows. The lights get dimmer the farther east you go. Buildings more collapsed. Graffiti more aggressive.
+
+The automated voice announces stops in that dead, corporate tone: "Next stop: Fletcher Station. End of line. All passengers must exit."
+
+End of line.
+
+Yeah. That's about right.
+
+The train slows. You stand before it fully stops, because sitting makes you think, and thinking makes you realize how stupid this is.
+
+The doors open. You step onto the platform.
+
+Fletcher Station is a tomb. Flickering lights. Cracked tiles. Half the exits are boarded up. The other half lead into darkness.
+
+There's a gap between here and Sector 9. Maybe half a mile of no-man's-land where the infrastructure just... gave up. No transit. No cabs. Nobody's stupid enough to run a route out there.
+
+You're going to have to walk the rest of the way.
+
+Into the place even the trains won't go.
+
+    `,
+    choices:
+    [
+      {
+        text: "Continue",
+        next: "dax_meet_1"
+      }
+    ]
+  },
+
+  dax_meet_1:
+  {
+    title: "Sector 9",
+    art: "images/sector9_1.jpg",
+    text: `
+The platform air is already different. Colder. Damp. It smells of mildew and the metallic tang of old blood, so faint you might think you imagined it if you didn't know better. Every instinct screams at you to turn around, to get back on that train before it lurches away for good. But you don't. You just stand there as the doors slide shut and the train retreats with a weary sigh, taking the last scraps of light and authority with it.
+You're in the quiet now. The real quiet. Not the absence of noise, but the presence of listening.
+You take the stairs down to street level. The world opens up into a canyon of collapsed concrete and skeletal remains of buildings that never should have been built in the first place. The only light comes from sputtering chemical fires in oil drums, casting long, dancing shadows that make every pile of rubble look like a crouching man. This is the borderlands. The buffer zone.
+Movement catches your eye. A figure huddled in the alcove of a shuttered storefront. At first glance, you think it's just another pile of trash, but then you see the shudder, the slow, rhythmic rock. A tremor-junkie. One of the Chroma-Zone fiends. Their skin has that weird, pearlescent sheen, like an oil slick, and their pupils are blown so wide the iris is just a thin ring of color. They're not seeing this street. They're seeing colors, sounds, sensations that aren't there. You keep your distance. They're harmless until they're not, and you can't afford to find out which it is today.
+Farther down, two women lean against a graffiti-covered wall, their faces illuminated by the glow of their own datapads. They're not looking at each other. One is barely out of her teens, with cheap synth-skin peeling at her jawline where the graft is starting to reject. She's got a flicker of false hope in her eyes. The other one is older, maybe forty, but worn like she's sixty. 
+The older woman's eyes slide over you, assessing. Calculating. She sees the way you're trying to look like you belong here when you clearly don't. Her lips curl; not quite a smile, more like a predator showing teeth.
+
+"You look lost," she calls out, voice like gravel soaked in cheap gin. "Looking for work? Looking to buy? Either way, Mama Vixen's got options." She gestures vaguely at the girl beside her, who doesn't even look up from her datapad. The cheap synth-skin grafts catch the dim light, the peeling edges raw and weeping where her body's rejecting the implant. Probably got them from some back-alley chopshop. Probably thought they'd make her more marketable. "Jinx here does a real nice–"
+
+"I'm not interested," you cut her off.
+
+"Everyone's interested in something, sweetheart." She takes a drag from a thin cigarette, the smoke curling gray and toxic. "Jinx doesn't mind helping you out. Do you, baby?"
+
+The girl finally looks up. Her eyes are flat. Dead. Whatever hope you thought you saw was just a trick of the bad lighting. She's already gone somewhere else in her head.
+
+"I don't mind," she says. The way she tries to act like she doesn’t hate her job is almost convincing. 
+
+A man emerges from the shadows down the block. Heavy boots, heavier gut, the kind of corporate dropout who couldn't hack it in the Spire but still thinks he's better than the rest of the gutter. He's got that look: hungry and ashamed and entitled all at once. He walks right past you.
+
+"How much?" he asks Mama Vixen, not even looking at Jinx. Once he pulls out the creds and hands them over, Jinx stands up. She doesn't look at the man. Doesn't look at anyone. She just walks toward the alley beside the storefront, movements mechanical, like a puppet with half its strings cut. The man follows, already fumbling with his belt.
+
+You look away and keep walking. You've seen worse. Everyone in Eden has seen worse. That doesn't mean it sits right. 
+
+The buffer zone stretches ahead, a maze of collapsed concrete and makeshift shelters cobbled together from scrap metal and desperation. The deeper you go, the more the shadows seem to press in, like the darkness itself has weight. You're maybe a quarter mile from the station when you hear it. Footsteps. Not behind you, but around you. The scrape of boots on broken glass. The whisper of fabric against rubble. You stop.
+
+They emerge from the shadows like cockroaches from cracked walls. Four of them, fanning out in a loose semicircle. All male, all built like they've been fighting since they could walk. Cheap augmentations glint beneath ragged clothes; subdermal armor plating, refurbished eyes, one guy with a crude hydraulic arm that looks like it was salvaged from a construction drone.
+
+"Look what the train dragged in," the one with the hydraulic arm says. His voice is scraped raw, like he's been screaming or smoking or both. 
+
+"Passing through," you say. Keep it even. Don't show fear.
+
+"Passing through." He laughs, and the others echo it. "Nobody passes through Sector 9. You come here to stay, or you come here to die. Those are the options."
+
+One of them circles behind you. You can hear his footsteps, heavy, letting you know he's there. Then you feel it, rough fingers catching a strand of your hair, twirling it slowly.
+
+"Soft," he murmurs, letting out a giggle that makes you raise a brow. "Real soft."  Your instinct tells you to pull out your gun, but your brain says you’re outnumbered, outgunned, and it’s not worth risking. 
+
+Another guy moves in from your left, eyes dragging over you like you're a product on a shelf. He's shorter than the others, but what he lacks in height he makes up for in the way he looks at you. 
+
+The hydraulic-arm guy takes a step closer. His breath smells like rot and synthetic alcohol. "Where you headed? Maybe we can give you an escort. Keep you... safe."
+
+"Fuck off." The word lands like a slap. The circling stops. For a moment, the only sound is the distant crackle of a fire and the low hum of the buildings that cage you in.
+
+Then the short one laughs, high and ugly. "Got a mouth on it. I like that." He reaches toward you, and then freezes.
+
+"Enough." The voice cuts through the dark like a blade. The thugs step back immediately, their postures shifting from predatory to submissive in an instant. You turn toward the voice, and for a moment you think you're hallucinating.
+
+The man standing in the mouth of the alley doesn't belong here. That's your first thought. He's tall, maybe six-foot-two, with a build that suggests regular exercise rather than combat augmentations. His clothes are clean; a fitted gray jacket over a black shirt, tailored pants, boots that actually match. His dark hair is combed back, his jaw clean-shaven.
+
+He looks like he stepped out of an advertisement for middle-management corporate life. Like he should be sipping synthetic coffee in some fancy office in the Midtown District, not walking the corpse-streets of Sector 9. But the way the thugs react to him... that's not fear of a stranger. That's respect.
+
+The hydraulic-arm guy actually lowered his head. "W-we didn't realize she was... we didn't know she was yours."
+
+"She's not," the man says simply. His eyes shift to the one who'd been playing with your hair. "Wren. You know better."
+
+Wren flinches like he's been struck. "Sorry," he whispers, and there's something almost childlike in his voice. "Sorry, sorry, I just—she was so soft, Dax, I didn't mean to. I didn't.”
+
+The well-dressed man, Dax, watches him with an expression you can't quite read. Not anger. Not quite pity. Something in between, tempered by exhaustion.
+
+"I know," Dax says quietly. "Go wait by the cart. I'll deal with you later." Wren nods frantically, relief washing over his features. He scurries off, movements jerky and uncoordinated, muttering something under his breath that sounds like numbers. Counting. Counting what, you don't know.
+
+The short one who'd been eyeing you up snorts. "Fucking glitch-head." Dax's gaze snaps to him, and the thug pales.
+
+Dax turns back to you, and just like that, the thugs are forgotten. Nonexistent. His attention is fully on you now, and it feels like being examined under a microscope. "I apologize. We don't get many visitors here, and my people get... enthusiastic."
+
+"Enthusiastic," you repeat flatly.
+He ignores your remark. “Want to tell me what you’re doing here?” 
+
+“Not particularly.”
+
+He tilts his head. "Let me guess: you're not here to buy, you're not here to sell, and you're definitely not here for the ambiance. That leaves three options. You're running from something, you're looking for revenge, or you're looking for someone."
+
+You keep your face neutral. "Maybe I'm just stupid."
+
+Dax laughs. It's a short, sharp sound, devoid of humor. "You're not stupid. You're desperate. There's a difference." You don’t know whether to be offended or… no, you should definitely be offended. "So let's try this again. What are you doing here? And for your own sake, don't waste my time with half-truths.”
+
+You hold his gaze. The temptation to lie, to deflect, to protect yourself… it's there. But he's right about one thing. You're desperate. And desperate people can't afford pride.
+
+"I'm looking for someone," you admit.
+
+"Who?"
+
+"Family." The word lands. Dax doesn't react visibly, but something shifts in his posture. A micro-adjustment. You wouldn't have caught it if you weren't watching for it. Before he can respond, Kovacs snorts from his position by the wall.
+
+"Shit, maybe she's lookin' for the same guy that other bitch was askin' about earlier. The one with the–"
+
+The words die in his throat. Dax hadn’t moved, nor had he raised his voice. But the look on his face was sudden death.
+
+"Kovacs," he says softly. "What have I told you about speaking?"
+
+"I–I was just–"
+
+"You were just about to tell this stranger about private business. Business that doesn't concern her. Business that doesn't concern you, unless you'd like it to become your permanent concern."
+
+Kovacs swallows hard. His bravado from earlier had evaporated completely. "Sorry, boss. Didn't think."
+
+"Thinking isn't your strength. Silence should be. Go check on Wren. Now." Dax turns back to you. The pleasant mask is back in place, but the seams are showing now. “Now, where were we? Ah, yes. Family. Dangerous motivation. Makes people do stupid things for relatives who probably don't deserve it. But if you want to find him–"
+
+You raise an eyebrow. "Him?" Dax pauses, just for a fraction of a second. “I never said I was looking for a guy," you say, crossing your arms. "I could be looking for my sister. My mother. My crazy Aunt Tilda who knits sweaters out of dead rat fur." 
+
+Dax's jaw tightens almost imperceptibly. "I merely–"
+
+"You're right," you interrupt. "I am looking for a guy. But you didn't know that. So either you're psychic, or you know more than you're letting on."
+
+For a moment, Dax doesn't move. Then, incredibly, he laughs. It's a short, sharp sound– genuine amusement breaking through the corporate veneer.
+
+"Well," he says. "You're sharper than you look.” Again, what’s with these insults? ”Most people down here just cower when I talk. It's refreshing to be mocked." He sighs, reaching into his jacket for a thin cigarette. He doesn't light it, just rolls it between his fingers. "Fine. Cards on the table. Kovacs is an idiot, but he's a useful idiot. He overhears things. A woman came through asking questions about a young man matching a certain description. She offered me a small amount of money for information. I declined, mostly because the money wasn't significant enough." He shrugs. "But, whatever your 'family matter' is, it’s suddenly very interesting to a lot of people.” He lights the cigarette. “Now, I might know something, and I’m willing to tell you… for a price.”
+
+"What kind of price?"
+
+Dax gestures behind him, toward the darker depths of Sector 9. "There's a woman. Doctor Krista Kline. She operates out of a lab in a sub-basement about six blocks east. She runs experiments that produce results no ethical scientist would touch." He pauses. "Fuck, even the Velvet Collective pays good money for some of it."
+
+The name hits like a punch. "The Collective?"
+
+"Did I stutter?" Dax takes a drag. "What’s important is: she has something of mine. A data drive. She took it as 'insurance' during our last negotiation, and she's been holding it over my head ever since."
+
+"You want me to steal it back."
+
+"I want you to retrieve it. However you accomplish that is your business." He taps ash onto the ground. "You get me that drive, I tell you what I know. And I give you my word that neither I nor my people will breathe a word of your visit to anyone else. Unless someone pays good money for it, of course– I’m not a charity."
+
+"And if I say no?"
+
+Dax shrugs. "Then maybe you are stupid.”
+
+
+    `,
+    choices:
+    [
+      {
+        text: "[1] Fine, I’ll get your drive.", 
+        next: "sector9_2"
+      },
+      {
+      	text: "[2] Negotiate",
+        next: "sector9_2",
+
+      }
+    ]
+  },
 
 
 
